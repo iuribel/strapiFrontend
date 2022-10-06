@@ -7,7 +7,7 @@ const Listusers = ()=>{
     
     const deleteuser = async (id) =>{
         try {
-            const deleteuser = await fetch(`http://localhost:5000/users/${id}`,{
+            const deleteuser = await fetch(`http://localhost:1337/api/personas/${id}`,{
                 method:"DELETE"
             });
             console.log(deleteuser);
