@@ -21,11 +21,12 @@ const Listusers = ()=>{
     const getUsers = async ()=>{
         try {
             
-            const response = await fetch("http://localhost:5000/users"); //by default it is a GET request
+            const response = await fetch("http://localhost:1337/api/personas"); //by default it is a GET request
             const jsonData= await response.json();
-            //console.log(jsonData);
-            setUsers(jsonData);
-
+            const arr=  Object.values(jsonData)[0];
+            setUsers(arr);
+            //console.log(arr);
+            
         } catch (err) {
             console.error(err.message);
         }
@@ -33,7 +34,7 @@ const Listusers = ()=>{
 
     useEffect(()=>{
         getUsers();
-    }, []);
+    },[]);
 
     console.log(users);
     return (
@@ -55,10 +56,11 @@ const Listusers = ()=>{
                     <td>john@example.com</td>
                 </tr>*/}
                 {users.map(user =>(
+                    
                     <tr key = {user.id}>
-                    <td>{user.nombre}</td>
+                    <td>{user.name}</td>
                     <td>{user.birthday}</td>
-                    <td>{user.id}</td>
+                    <td>{user.document}</td>
                     <td>
                     <Edituser user={user}/>
                     </td>
